@@ -72,12 +72,12 @@ public class AuthControlador {
 
         Usuario usuario = new Usuario();
 
-        usuario.setNombreCompleto(registroDTO.getNombre());
-        usuario.setEmail(registroDTO.getEmail());
+        usuario.setUsername(registroDTO.getUsername());
+        usuario.setNombreCompleto(registroDTO.getNombreCompleto());
         usuario.setTelefono(registroDTO.getTelefono());
+        usuario.setEmail(registroDTO.getEmail());
+        usuario.setContrasena(passwordEncoder.encode(registroDTO.getContrasena()));
         usuario.setSpam(registroDTO.isSpam());
-        usuario.setContrasena(passwordEncoder.encode(registroDTO.getPassword()));
-
         Rol roles = rolRepositorio.findByNombre("ROLE_USER").get();
         usuario.setRoles(Collections.singleton(roles));
 

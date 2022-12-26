@@ -9,11 +9,11 @@ package org.aoyc.cafeflores.api.dtos;
  * @author odraude
  */
 public class RegistroDTO {
-    private String nombre;
     private String username;
-    private String email;
+    private String nombreCompleto;
     private String telefono;
-    private String password;
+    private String email;
+    private String contrasena;
     private boolean spam;
 
     public boolean isSpam() {
@@ -31,12 +31,12 @@ public class RegistroDTO {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-    public String getNombre() {
-        return nombre;
+    public String getNombreCompleto() {
+        return nombreCompleto;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
     }
 
     public String getUsername() {
@@ -55,12 +55,12 @@ public class RegistroDTO {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
     
     public RegistroDTO() {
