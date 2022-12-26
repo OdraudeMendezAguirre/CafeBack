@@ -12,7 +12,7 @@ public class RegistroDTO {
     private String nombre;
     private String username;
     private String email;
-    private int telefono;
+    private String telefono;
     private String password;
     private boolean spam;
 
@@ -24,11 +24,11 @@ public class RegistroDTO {
         this.spam = spam;
     }
     
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
     public String getNombre() {

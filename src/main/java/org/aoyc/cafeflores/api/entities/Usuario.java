@@ -32,7 +32,7 @@ public class Usuario {
     private int id_usuario;
     private String username;
     private String nombreCompleto;
-    private int telefono;
+    private String telefono;
     private String email;
     private String contrasena;
     private boolean spam;
@@ -73,11 +73,11 @@ public class Usuario {
         this.nombreCompleto = nombreCompleto;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
