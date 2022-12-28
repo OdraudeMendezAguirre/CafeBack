@@ -73,7 +73,7 @@ public class AuthControlador {
         Usuario usuario = new Usuario();
 
         usuario.setUsername(registroDTO.getUsername());
-        usuario.setNombreCompleto(registroDTO.getNombreCompleto());
+        usuario.setNombre_completo(registroDTO.getNombre_completo());
         usuario.setTelefono(registroDTO.getTelefono());
         usuario.setEmail(registroDTO.getEmail());
         usuario.setContrasena(passwordEncoder.encode(registroDTO.getContrasena()));

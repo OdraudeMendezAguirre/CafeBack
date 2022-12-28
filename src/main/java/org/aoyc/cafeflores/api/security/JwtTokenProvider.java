@@ -48,19 +48,8 @@ public class JwtTokenProvider {
     }
 
     public boolean validarToken(String token) {
-        try {
-            Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token);
-            return true;
-        } catch (SignatureException ex) {
-            throw new BlogAppException(HttpStatus.BAD_REQUEST, "Firma JWT no valida");
-        } catch (MalformedJwtException ex) {
-            throw new BlogAppException(HttpStatus.BAD_REQUEST, "Token JWT no valida");
-        } catch (ExpiredJwtException ex) {
-            throw new BlogAppException(HttpStatus.BAD_REQUEST, "Token JWT caducado");
-        } catch (UnsupportedJwtException ex) {
-            throw new BlogAppException(HttpStatus.BAD_REQUEST, "Token JWT no compatible");
-        } catch (IllegalArgumentException ex) {
-            throw new BlogAppException(HttpStatus.BAD_REQUEST, "La cadena claims JWT esta vacia");
-        }
+        Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token);
+        return true;
+
     }
 }

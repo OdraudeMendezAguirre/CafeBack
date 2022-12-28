@@ -39,7 +39,7 @@ public class ProductoServiceImp implements ProductoService{
     @Override
     public ProductosDTO obtenerById(int id) {
         Producto producto = prodRepo.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Empledos", "id", id));
+                .orElseThrow(() -> new ResourceNotFoundException("Producto", "id", id));
         return mapearDTO(producto);
     }
 

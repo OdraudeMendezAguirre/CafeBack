@@ -10,7 +10,7 @@ package org.aoyc.cafeflores.api.dtos;
  */
 public class RegistroDTO {
     private String username;
-    private String nombreCompleto;
+    private String nombre_completo;
     private String telefono;
     private String email;
     private String contrasena;
@@ -31,13 +31,15 @@ public class RegistroDTO {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-    public String getNombreCompleto() {
-        return nombreCompleto;
+
+    public String getNombre_completo() {
+        return nombre_completo;
     }
 
-    public void setNombreCompleto(String nombreCompleto) {
-        this.nombreCompleto = nombreCompleto;
+    public void setNombre_completo(String nombre_completo) {
+        this.nombre_completo = nombre_completo;
     }
+
 
     public String getUsername() {
         return username;

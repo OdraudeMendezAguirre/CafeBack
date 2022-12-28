@@ -31,7 +31,7 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_usuario;
     private String username;
-    private String nombreCompleto;
+    private String nombre_completo;
     private String telefono;
     private String email;
     private String contrasena;
@@ -65,13 +65,14 @@ public class Usuario {
         this.id_usuario = id_usuario;
     }
 
-    public String getNombreCompleto() {
-        return nombreCompleto;
+    public String getNombre_completo() {
+        return nombre_completo;
     }
 
-    public void setNombreCompleto(String nombreCompleto) {
-        this.nombreCompleto = nombreCompleto;
+    public void setNombre_completo(String nombre_completo) {
+        this.nombre_completo = nombre_completo;
     }
+
 
     public String getTelefono() {
         return telefono;

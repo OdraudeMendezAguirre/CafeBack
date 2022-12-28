@@ -7,6 +7,8 @@ package org.aoyc.cafeflores.api.controllers;
 import java.util.List;
 import javax.validation.Valid;
 import org.aoyc.cafeflores.api.dtos.ProductosDTO;
+import org.aoyc.cafeflores.api.entities.Producto;
+import org.aoyc.cafeflores.api.repositories.ProductoRepository;
 import org.aoyc.cafeflores.api.services.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,7 +37,7 @@ public class ProductoController {
     private ProductoService prodSer;
 
     @CrossOrigin(origins = "*")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER')")
     @PostMapping
     public ResponseEntity<ProductosDTO> guardarProducto(@Valid @RequestBody ProductosDTO prodDTO) {
         return new ResponseEntity<>(prodSer.guardarProductos(prodDTO), HttpStatus.CREATED);
@@ -55,7 +57,7 @@ public class ProductoController {
     }
 
     @CrossOrigin(origins = "*")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER')")
     @PutMapping("/{id}")
     public ResponseEntity<ProductosDTO> actualizarProducto(@Valid @RequestBody ProductosDTO prodDTO, @PathVariable(name = "id") int id) {
 
@@ -64,7 +66,7 @@ public class ProductoController {
     }
 
     @CrossOrigin(origins = "*")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminarProducto(@PathVariable(name = "id") int id) {
 
