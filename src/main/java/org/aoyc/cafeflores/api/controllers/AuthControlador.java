@@ -5,6 +5,7 @@
 package org.aoyc.cafeflores.api.controllers;
 
 import java.util.Collections;
+import java.util.List;
 import org.aoyc.cafeflores.api.dtos.LoginDTO;
 import org.aoyc.cafeflores.api.dtos.RegistroDTO;
 import org.aoyc.cafeflores.api.entities.Rol;
@@ -23,6 +24,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -83,5 +85,17 @@ public class AuthControlador {
 
         usuarioRepositorio.save(usuario);
         return new ResponseEntity<>("Usuario registrado exitosamente", HttpStatus.OK);
+    }
+    
+    @CrossOrigin(origins = "*")
+    @GetMapping
+    public List<Usuario> listarUsuarios() {
+        return usuarioRepositorio.findAll();
+    }
+    
+    @CrossOrigin(origins = "*")
+    @PostMapping("/user")
+    public Usuario getUsuario(@RequestBody LoginDTO loginDTO) {
+        return usuarioRepositorio.findByEmail(loginDTO.getUsernameOrEmail()).get();
     }
 }

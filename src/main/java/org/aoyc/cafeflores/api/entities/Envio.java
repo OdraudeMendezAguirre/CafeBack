@@ -38,14 +38,14 @@ public class Envio {
     private String estado;
     
     @Column
-    private String referenciaVivienda;
+    private String referencia_vivienda;
     
     @Column
     private boolean realizado;
     
     @ManyToOne()
     @JoinColumn(name = "id_usuario")
-    Usuario usuario;
+    private Usuario usuario;
     
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinTable(name = "Envio_compra",joinColumns =  @JoinColumn(name = "id_envio",
@@ -85,12 +85,12 @@ public class Envio {
         this.estado = estado;
     }
 
-    public String getReferenciaVivienda() {
-        return referenciaVivienda;
+    public String getReferencia_vivienda() {
+        return referencia_vivienda;
     }
 
-    public void setReferenciaVivienda(String referenciaVivienda) {
-        this.referenciaVivienda = referenciaVivienda;
+    public void setReferencia_vivienda(String referencia_vivienda) {
+        this.referencia_vivienda = referencia_vivienda;
     }
 
     public boolean isRealizado() {
@@ -100,4 +100,21 @@ public class Envio {
     public void setRealizado(boolean realizado) {
         this.realizado = realizado;
     }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public List<Compra> getCompra() {
+        return compra;
+    }
+
+    public void setCompra(List<Compra> compra) {
+        this.compra = compra;
+    }
+    
 }

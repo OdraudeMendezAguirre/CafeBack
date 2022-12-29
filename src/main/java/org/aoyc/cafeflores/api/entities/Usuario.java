@@ -120,6 +120,9 @@ public class Usuario {
 
     public void setEnvios(List<Envio> envios) {
         this.envios = envios;
+        for(Envio envio: envios){
+            envio.setUsuario(this);
+        }
     }
     
     
