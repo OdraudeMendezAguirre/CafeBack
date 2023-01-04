@@ -4,6 +4,9 @@
  */
 package org.aoyc.cafeflores.api.dtos;
 
+import org.aoyc.cafeflores.api.entities.Carrito;
+import org.aoyc.cafeflores.api.entities.Envio;
+
 /**
  *
  * @author odraude
@@ -15,6 +18,8 @@ public class RegistroDTO {
     private String email;
     private String contrasena;
     private boolean spam;
+    private Carrito carrito;
+    private Envio envio;
 
     public boolean isSpam() {
         return spam;
@@ -68,4 +73,22 @@ public class RegistroDTO {
     public RegistroDTO() {
         super();
     }
+
+    public Carrito getCarrito() {
+        return carrito;
+    }
+
+    public void setCarrito(Carrito carrito) {
+        this.carrito = carrito;
+    }
+
+    public Envio getEnvio() {
+        return envio;
+    }
+
+    public void setEnvio(Envio envio) {
+        this.envio = envio;
+    }
+    
+    
 }

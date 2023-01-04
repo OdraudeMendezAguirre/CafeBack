@@ -17,6 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -37,17 +38,19 @@ public class Usuario {
     private String contrasena;
     private boolean spam;
     
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_carrito", referencedColumnName = "id_carrito")
+    private Carrito carrito;
+    
     @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinTable(name = "usuarios_roles",joinColumns = @JoinColumn(name = "id_usuario",
             referencedColumnName = "id_usuario"),
             inverseJoinColumns = @JoinColumn(name = "rol_id",referencedColumnName = "id"))
     private Set<Rol> roles = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinTable(name = "usuarios_envios",joinColumns =  @JoinColumn(name = "id_usuario",
-            referencedColumnName = "id_usuario"),
-            inverseJoinColumns = @JoinColumn(name = "id_envio",referencedColumnName = "id_envio"))
-    private List<Envio> envios;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="id_envio",referencedColumnName = "id_envio")
+    private Envio envio;
 
     public String getUsername() {
         return username;
@@ -114,15 +117,20 @@ public class Usuario {
         this.roles = roles;
     }
 
-    public List<Envio> getEnvios() {
-        return envios;
+    public Carrito getCarrito() {
+        return carrito;
     }
 
-    public void setEnvios(List<Envio> envios) {
-        this.envios = envios;
-        for(Envio envio: envios){
-            envio.setUsuario(this);
-        }
+    public void setCarrito(Carrito carrito) {
+        this.carrito = carrito;
+    }
+
+    public Envio getEnvio() {
+        return envio;
+    }
+
+    public void setEnvio(Envio envio) {
+        this.envio = envio;
     }
     
     

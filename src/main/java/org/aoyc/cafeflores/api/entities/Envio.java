@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -43,9 +45,6 @@ public class Envio {
     @Column
     private boolean realizado;
     
-    @ManyToOne()
-    @JoinColumn(name = "id_usuario")
-    private Usuario usuario;
     
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinTable(name = "Envio_compra",joinColumns =  @JoinColumn(name = "id_envio",
@@ -99,14 +98,6 @@ public class Envio {
 
     public void setRealizado(boolean realizado) {
         this.realizado = realizado;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
     }
 
     public List<Compra> getCompra() {

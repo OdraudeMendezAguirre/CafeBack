@@ -12,13 +12,15 @@ import java.util.HashMap;
 import java.util.Map;
 import org.aoyc.cafeflores.api.stripe.PaymentIntentDTO;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author odraude
  */
+@Service
 public class PaymentService {
-    @Value("$(stripe.key.secret)")
+    @Value("sk_test_51MGt9xDJ3kXl0OHIflPUEfqeGqxBr6Z1Ly13hdAFbBS3zEQvcv6mioP50mUoWXdzhIWsPJJhOU5yawUzdcZgqQaQ00BhA5DxIo")
     String secretKey;
     
     public PaymentIntent paymentIntent(PaymentIntentDTO dto) throws StripeException{

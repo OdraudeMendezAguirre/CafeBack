@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,7 +43,7 @@ public class EnvioController {
     @CrossOrigin(origins = "*")
     @PostMapping("/guardar")
     public Envio guardarEnvio(@RequestBody Envio envio){
-        return repo.save(envio);
+        return repo.saveAndFlush(envio);
     }
     
     @CrossOrigin(origins = "*")
@@ -50,4 +51,17 @@ public class EnvioController {
     public List<Envio> getEnvios(){
         return repo.findAll();
     }
+    
+    @CrossOrigin(origins = "*")
+    @GetMapping("/{id}")
+    public Envio getEnvio(@PathVariable int id){
+        return repo.findById(id).get();
+    }
+    
+    @CrossOrigin(origins = "*")
+    @PutMapping("/act")
+    public Envio putEnvios(@RequestBody Envio envio){
+        return repo.save(envio);
+    }
+    
 }

@@ -39,11 +39,50 @@ public class Compra {
     Envio envio;
     
     @Column
-    int cant_producto;
-    
-    @Column
     long sub_total;
     
     @Column
     long total;
+
+    public int getId_compra() {
+        return id_compra;
+    }
+
+    public void setId_compra(int id_compra) {
+        this.id_compra = id_compra;
+    }
+
+    public List<Producto> getProducto() {
+        return producto;
+    }
+
+    public void setProducto(List<Producto> producto) {
+        this.producto = producto;
+    }
+
+    public Envio getEnvio() {
+        return envio;
+    }
+
+    public void setEnvio(Envio envio) {
+        this.envio = envio;
+    }
+
+    public long getSub_total() {
+        return sub_total;
+    }
+
+    public void setSub_total(long sub_total) {
+        this.sub_total = sub_total;
+    }
+
+    public long getTotal() {
+        return total;
+    }
+
+    public void setTotal(long total) {
+        this.total = total;
+    }
+    
+    
 }

@@ -26,6 +26,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -51,7 +52,7 @@ public class AuthControlador {
 
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
-
+    
     @CrossOrigin(origins = "*")
     @PostMapping("/iniciarSesion")
     public ResponseEntity<JWTAuthResonseDTO> authenticateUser(@RequestBody LoginDTO loginDTO) {
@@ -67,9 +68,9 @@ public class AuthControlador {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/registrar")
-    public ResponseEntity<?> registrarUsuario(@RequestBody RegistroDTO registroDTO) {
+    public Usuario registrarUsuario(@RequestBody RegistroDTO registroDTO) {
         if (usuarioRepositorio.existsByEmail(registroDTO.getEmail())) {
-            return new ResponseEntity<>("Ese correo de usuario ya existe", HttpStatus.BAD_REQUEST);
+            return null;
         }
 
         Usuario usuario = new Usuario();
@@ -82,9 +83,11 @@ public class AuthControlador {
         usuario.setSpam(registroDTO.isSpam());
         Rol roles = rolRepositorio.findByNombre("ROLE_USER").get();
         usuario.setRoles(Collections.singleton(roles));
-
-        usuarioRepositorio.save(usuario);
-        return new ResponseEntity<>("Usuario registrado exitosamente", HttpStatus.OK);
+        
+        usuario.setCarrito(registroDTO.getCarrito());
+        usuario.setEnvio(registroDTO.getEnvio());
+        
+        return usuarioRepositorio.saveAndFlush(usuario);
     }
     
     @CrossOrigin(origins = "*")
@@ -98,4 +101,11 @@ public class AuthControlador {
     public Usuario getUsuario(@RequestBody LoginDTO loginDTO) {
         return usuarioRepositorio.findByEmail(loginDTO.getUsernameOrEmail()).get();
     }
+    
+    @CrossOrigin(origins = "*")
+    @PutMapping("/act")
+    public Usuario actUsuario(@RequestBody Usuario user) {
+        return usuarioRepositorio.saveAndFlush(user);
+    }
+    
 }
